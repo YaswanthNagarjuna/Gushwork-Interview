@@ -317,7 +317,7 @@ input {
   top: -80px;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 899;
   background: var(--color-white);
   border-bottom: 1px solid var(--color-border);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -325,7 +325,8 @@ input {
 }
 
 .sticky-header.visible {
-  top: 0;
+  /* Position below the main sticky header */
+  top: var(--main-header-height, 60px);
 }
 
 .sticky-header__inner {
@@ -457,7 +458,8 @@ input {
    MAIN HEADER / NAVIGATION
    ============================================================ */
 .main-header {
-  position: relative;
+  position: sticky;
+  top: 0;
   background: var(--color-white);
   border-bottom: 1px solid var(--color-border);
   z-index: 900;
@@ -1422,8 +1424,9 @@ input {
 .process__chips {
   display: none;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 0;
   margin-bottom: 24px;
+  align-items: center;
 }
 
 @media (min-width: 1024px) {
@@ -1442,6 +1445,22 @@ input {
   background: var(--color-white);
   transition: all 200ms ease;
   cursor: pointer;
+  position: relative;
+}
+
+/* connector line between chips */
+.process__chip + .process__chip {
+  margin-left: 24px;
+}
+
+.process__chip + .process__chip::before {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  width: 24px;
+  height: 2px;
+  background: var(--color-border-dark);
 }
 
 .process__chip.active {
